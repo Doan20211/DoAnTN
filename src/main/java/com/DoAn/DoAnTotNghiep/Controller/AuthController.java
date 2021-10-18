@@ -53,22 +53,4 @@ public class AuthController {
         return ResponseEntity.ok(new AccountDTORes(jwt, userDetails.getId(), userDetails.getUsername(), role, name));
     }
 
-    @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> authAdmin(){
-        return new ResponseEntity<>("ADMIN",HttpStatus.OK);
-    }
-
-    @GetMapping("/admin")
-    @PreAuthorize("hasRole('TEACHER')")
-    public ResponseEntity<?> authTeacher(){
-        return new ResponseEntity<>("TEACHER",HttpStatus.OK);
-    }
-
-    @GetMapping("/admin")
-    @PreAuthorize("hasRole('STUDENT')")
-    public ResponseEntity<?> authStudent(){
-        return new ResponseEntity<>("STUDENT",HttpStatus.OK);
-    }
-
 }
