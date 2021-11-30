@@ -6,7 +6,7 @@
           <h4 class="col-6">Danh sách câu hỏi trắc nghiệm</h4>
           <div class="col-6 text-end">
             <button class="btn btn-outline-primary" @click="toInsert">
-              Thêm câu hỏi
+              Tạo đề thi
             </button>
           </div>
         </div>
@@ -15,6 +15,7 @@
         <table class="table table-hover my-0">
           <thead>
             <tr>
+              <th class="col-1">Check</th>
               <th class="col-1">ID</th>
               <th class="col-9">Câu hỏi</th>
               <th class="col-1">Action</th>
@@ -22,13 +23,10 @@
           </thead>
           <tbody>
             <tr v-for="ques in ListQuestion" :key="ques.id">
-              <td >{{ ques.id }}</td>
-              <td> <Question v-bind="ques" /></td>
+              <td>{{ ques.id }}</td>
+              <td><Question v-bind="ques" /></td>
               <td>
-                <button
-                  class="btn btn-outline-info"
-                  @click="toEdit(ques.id)"
-                >
+                <button class="btn btn-outline-info" @click="toEdit(ques.id)">
                   <i class="align-middle" data-feather="edit"></i>
                   Sửa
                 </button>
@@ -50,15 +48,15 @@
 
 <script>
 import { HTTP } from "../../http-common";
-import feather from 'feather-icons'
-import Question from './Question.vue'
+import feather from "feather-icons";
+import Question from "./Question.vue";
 export default {
   data() {
     return {
       ListQuestion: [],
     };
   },
-  components:{
+  components: {
     Question,
   },
   methods: {
@@ -95,11 +93,11 @@ export default {
         .then((res) => {
           this.ListAccount = res.data;
           console.log(res);
-          alert('Xóa câu hỏi thành công!');
+          alert("Xóa câu hỏi thành công!");
         })
         .catch((error) => {
           console.log(error);
-          alert('Xóa câu hỏi không thành công!');
+          alert("Xóa câu hỏi không thành công!");
         });
       this.$router.go();
     },
@@ -107,7 +105,6 @@ export default {
   mouted() {
     feather.replace();
     this.getListQuestion();
-    
   },
   created() {
     this.getListQuestion();
@@ -116,9 +113,9 @@ export default {
 </script>
 
 <style scoped>
-thead{
+thead {
   position: sticky;
-  top:0;
+  top: 0;
   background: white;
 }
 .scroll {

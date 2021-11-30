@@ -1,13 +1,16 @@
 <template>
   <div class="home">
-    <div v-if="role=='TEACHER'">
+    <div v-if="role=='ROLE_TEACHER'">
       <Teacher />
     </div>
-    <div v-else-if="role=='ADMIN'">
+    <div v-else-if="role=='ROLE_ADMIN'">
       <Admin />
     </div>
-    <div v-else>
+    <div v-else-if="role=='ROLE_STUDENT'">
       <Student />
+    </div>
+    <div v-else>
+      <h2 style="color:red">Web not found</h2>
     </div>
   </div>
 </template>
@@ -21,12 +24,14 @@ export default {
     return {
       email:'',
       role:'',
-      name:''
+      name:'',
+      ListAccount:[]
     }
   },
   name: 'Home',
   mounted(){
     this.getInfomation();
+    
   },
   methods:{
     getInfomation(){
@@ -40,7 +45,8 @@ export default {
       localStorage.removeItem('role')
       localStorage.removeItem('userid')
       this.$router.push("/")
-    }
+    },
+    
 
   },
   components: {

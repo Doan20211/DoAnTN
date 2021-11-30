@@ -1,24 +1,24 @@
 <template>
     <div class="main-bg">
-        <div class="container " >
-            <div style="height:5rem;" ></div>
+        <div class="container vh-100" >
+            <div style="height:4rem;" ></div>
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-8 col-sm-8">
-                    <div class="card shadow-lg ">
-                        <img src="../assets/logo-BK.jpg" alt="" height="200" width="250">
+                    <div class="card shadow ">
+                        <img class="mt-3" src="../assets/logo-BK.jpg" alt="" height="180" width="240">
                         <div class="card-title text-center border-bottom">
-                            <h2 class="p-3">Login</h2>
+                            <h2 class="p-3" style="color: blue"></h2>
                         </div>
                         <div class="card-body">
                             <form @submit.prevent="login">
                                 <div class="mb-4">
-                                    <label for="username" class="form-label ">Email</label>
+                                    <label for="username" class="form-label ">Email/Tên đăng nhập</label>
                                     <input type="text" class="form-control" v-model="username" id="username" placeholder="Email" required>
                                     <p>{{msgUsername}}</p>
                                 </div>
                                 
                                 <div class="mb-4">
-                                    <label for="password" class="form-label">Password</label>
+                                    <label for="password" class="form-label">Mật khẩu</label>
                                     <input type="password" class="form-control" v-model="password" id="password" placeholder="Password" required >
                                     <p>{{msgPassword}}</p>
                                 </div>
@@ -34,7 +34,6 @@
                     </div>
                 </div>
             </div>
-            <div style="height:7rem"></div>
         </div>
     </div>
 </template>

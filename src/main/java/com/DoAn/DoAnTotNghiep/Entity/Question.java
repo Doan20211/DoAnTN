@@ -17,6 +17,7 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String thread;
     private String answerA;
     private String answerB;

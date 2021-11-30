@@ -3,16 +3,19 @@
     <div class="row vh-90">
       <div class="col-sm-12 col-md-10 col-lg-8 mx-auto d-table h-100">
         <div class="d-table-cell align-middle">
+          <div class="text-center mt-2">
+            <h1 class="h2">Thông tin tài khoản</h1>
+          </div>
           <div class="card">
-            <h2 class="card-title mt-3 strong">Sửa thông tin tài khoản</h2>
-            <hr class="solid">
             <div class="card-body">
-              <div class="m-sm-8">
+              <button class="btn btn-info" v-show="isUpdate == false" @click="isUpdate = !isUpdate">Cập nhật thông tin tài khoản</button>
+              <div class="m-sm-4">
                 <form @submit.prevent="updateAccount">
                   <div class="row">
                     <div class="mb-3 col-8">
                       <label class="form-label">Tên tài khoản</label>
                       <input
+                        :disabled="isUpdate == false"
                         class="form-control form-control-lg"
                         type="text"
                         name="name"
@@ -23,6 +26,7 @@
                     <div class="mb-3 col-4">
                       <label class="form-label">Mã số</label>
                       <input
+                        disabled
                         class="form-control form-control-lg"
                         type="text"
                         name="company"
@@ -35,6 +39,7 @@
                     <div class="mb-3 col-6">
                       <label class="form-label">Email</label>
                       <input
+                        disabled
                         class="form-control form-control-lg"
                         type="email"
                         name="email"
@@ -45,6 +50,7 @@
                     <div class="mb-3 col-6">
                       <label class="form-label">SĐT</label>
                       <input
+                        :disabled="isUpdate == false"
                         class="form-control form-control-lg"
                         type="text"
                         name="text"
@@ -56,6 +62,7 @@
                   <div class="mb-3">
                     <label class="form-label">Địa chỉ</label>
                     <input
+                      :disabled="isUpdate == false"
                       class="form-control form-control-lg"
                       type="text"
                       name="text"
@@ -63,65 +70,8 @@
                       v-model="Account.address"
                     />
                   </div>
-                  <div class="row">
-                    <div class="mb-3 col-4">
-                      <label class="form-label">Chức vụ</label>
-                      <input
-                        class="form-control form-control-lg"
-                        type="text"
-                        name="text"
-                        placeholder="Chức vụ"
-                        v-model="Account.position"
-                      />
-                    </div>
-                    <div class="col-8">
-                      <label class="form-label">Quyền tài khoản</label>
-                      <div
-                        class="
-                          input-group
-                          mb-3
-                          pb-2
-                          row
-                          justify-content-around
-                          radio-form
-                        "
-                      >
-                        <div class="col-3 mt-2">
-                          <input
-                            type="radio"
-                            id="role1"
-                            v-model="Account.role"
-                            name="role"
-                            value="ROLE_ADMIN"
-                          />
-                          <label for="role1">ADMIN</label>
-                        </div>
-                        <div class="col-3 mt-2">
-                          <input
-                            type="radio"
-                            id="role2"
-                            v-model="Account.role"
-                            name="role"
-                            value="ROLE_TEACHER"
-                          />
-                          <label for="role2">TEACHER</label>
-                        </div>
-                        <div class="col-3 mt-2">
-                          <input
-                            type="radio"
-                            id="role3"
-                            v-model="Account.role"
-                            name="role"
-                            value="ROLE_STUDENT"
-                          />
-                          <label for="role3">STUDENT</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
                   <div class="text-center mt-3">
-                    <button class="btn btn-primary" type="submit">Sửa</button>
+                    <button v-show="isUpdate" class="btn btn-primary" type="submit">Cập nhật</button>
                   </div>
                 </form>
               </div>
@@ -138,16 +88,13 @@ import { HTTP } from "../../http-common";
 export default {
   data() {
     return {
+      isUpdate:false,
       Account: {
         id: "",
         fullName: "",
         email: "",
-        fullName: "",
         address: "",
         phone: "",
-        position: "",
-        code: "",
-        role: "",
       },
       msgError: {
         fullName: "",
@@ -155,34 +102,29 @@ export default {
         fullName: "",
         address: "",
         phone: "",
-        position: "",
-        code: "",
-        role: "",
       },
     };
   },
   methods: {
     getAccount() {
-      const id = localStorage.getItem("idAccount");
-      HTTP.get("admin/account/" + id)
+      const email = localStorage.getItem("email");
+      HTTP.get("/information")
         .then((res) => {
           this.Account = res.data;
-          this.Account.role = "ROLE_" + this.Account.role;
-          console.log(res);
         })
         .catch((error) => {
           console.log(error);
         });
     },
     updateAccount() {
-      HTTP.post("/admin/account", this.Account)
+      HTTP.post("/information", this.Account)
         .then((res) => {
-          alert("Chỉnh sửa thành công!");
-          this.$router.push("/home/admin/account");
+          alert("Cập nhật tài khoản không thành công!");
+          this.$router.go();
         })
         .catch((error) => {
           console.log(error);
-          alert("Chỉnh sửa không thành công!");
+          alert("Cập nhật tài khoản không thành công!");
         });
     },
   },
@@ -196,8 +138,10 @@ export default {
 </script>
 
 <style scoped>
-.radio-form {
-  border: 1px solid lightgray;
-  border-radius: 12px;
-}
+
+  .radio-form{
+    border: 1px solid lightgray ;
+    border-radius: 12px;
+  }
+
 </style>

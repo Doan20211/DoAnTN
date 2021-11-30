@@ -8,25 +8,19 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountDTO {
+public class InfoDTO {
 
-    private Long id;
     private String email;
     private String fullName;
     private String address;
     private String phone;
-    private String position;
     private String code;
-    private String role;
 
-    public AccountDTO(Account account){
-        this.id = account.getId();
+    public InfoDTO(Account account){
         this.address = account.getAddress();
         this.code = account.getCode();
         this.email = account.getEmail();
         this.fullName = account.getFullName();
-        this.position = account.getPosition();
-        this.role = account.getRole().substring(5);
         this.phone = account.getPhone();
     }
 

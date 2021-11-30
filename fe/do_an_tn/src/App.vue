@@ -1,21 +1,27 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
+import feather from 'feather-icons';
 export default {
-  name: 'App'
+  name: 'app',
+  data () {
+    return {
+      msg: ''
+    }
+  },
+  method:{
+    
+  },
+  mounted() {
+      feather.replace();
+    }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  @import url(./css/app.css);
 </style>

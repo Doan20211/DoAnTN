@@ -1,6 +1,8 @@
 package com.DoAn.DoAnTotNghiep.Controller;
 
+import com.DoAn.DoAnTotNghiep.DTO.Request.CreateExam;
 import com.DoAn.DoAnTotNghiep.DTO.Response.QuestionDTO;
+import com.DoAn.DoAnTotNghiep.Entity.Exam;
 import com.DoAn.DoAnTotNghiep.Entity.Question;
 import com.DoAn.DoAnTotNghiep.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +43,10 @@ public class TeacherController {
         return new ResponseEntity<>(questionService.getQuestionById(id), HttpStatus.OK);
     }
 
+    @PostMapping("/create/exam")
+    public ResponseEntity<?> createExam(@RequestBody CreateExam createExam){
+        boolean status = true;
+        return new ResponseEntity<>(status,HttpStatus.OK);
+    }
 
 }

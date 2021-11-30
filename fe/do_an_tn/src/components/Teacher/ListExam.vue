@@ -6,7 +6,7 @@
           <h4 class="col-6">Danh sách câu hỏi trắc nghiệm</h4>
           <div class="col-6 text-end">
             <button class="btn btn-outline-primary" @click="toInsert">
-              Thêm câu hỏi
+              Tạo đề thi
             </button>
           </div>
         </div>
@@ -51,7 +51,7 @@
 <script>
 import { HTTP } from "../../http-common";
 import feather from 'feather-icons'
-import Question from './Question.vue'
+import Question from '../Question/Question.vue'
 export default {
   data() {
     return {

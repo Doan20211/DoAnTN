@@ -21,6 +21,7 @@ public class AdminController {
     AdminService adminService;
 
     @GetMapping("/account")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getAllAccount(){
         List<AccountDTO> listAccount = this.adminService.getAllAccount();
         return new ResponseEntity<>(listAccount, HttpStatus.OK);
@@ -34,6 +35,7 @@ public class AdminController {
     }
 
     @PostMapping("/account")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createAccount(@RequestBody Account account){
         boolean status = this.adminService.createAccount(account);
         return new ResponseEntity<>(status,HttpStatus.OK);
