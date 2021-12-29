@@ -14,5 +14,4 @@ public interface QuestionService {
     boolean createQuestion(Question question);
     boolean deleteQuestion(Long id);
 
-
 }

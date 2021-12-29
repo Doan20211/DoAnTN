@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import cors from 'cors'
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -13,5 +14,6 @@ new Vue({
     el: '#app',
     router,
     components: { App },
-    template: '<App/>'
+    template: '<App/>',
+    cors
 })

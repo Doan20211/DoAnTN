@@ -11,6 +11,8 @@ import EditQuestion from '../components/Question/EditQuestion.vue'
 import Information from '../components/Information/Information.vue'
 import Class from '../components/Teacher/Class.vue'
 import ListExam from '../components/Teacher/ListExam.vue'
+import ComplieCode from '../components/ExamIT/ComplieCode.vue'
+import CreateQuestionIT from '../components/Question/CreateQuestionIT.vue'
 
 Vue.use(Router)
 
@@ -51,6 +53,11 @@ export default new Router({
                     component: CreateQuestion
                 },
                 {
+                    path: 'teacher/questionIT/create',
+                    name: 'CreateQuestionIT',
+                    component: CreateQuestionIT
+                },
+                {
                     path: 'teacher/question/edit',
                     name: 'EditQuestion',
                     component: EditQuestion
@@ -64,6 +71,11 @@ export default new Router({
                     path: 'teacher/exam',
                     name: 'ListExam',
                     component: ListExam
+                },
+                {
+                    path: 'teacher/examIT',
+                    name: 'ComplieCode',
+                    component: ComplieCode
                 },
                 {
                     path: 'information',

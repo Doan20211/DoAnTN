@@ -20,55 +20,58 @@
                     />
                   </div>
                   <div class="row">
-                    <div class="mb-3 col-6">
-                      <label class="form-label">Đáp án A</label>
-                      <input
+                    <div class="mb-3 col-6 row">
+                      <label class="form-label ">Đáp án A</label>
+                      <div class="col-1"><input type="checkbox" id="answerA" value="A"></div>
+                      <div class="col-11">
+                        <input
                         class="form-control form-control-lg"
                         type="text"
                         placeholder="Đáp án A"
                         v-model="Question.answerA"
                       />
+                      </div>
+                      
                     </div>
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-6 row">
                       <label class="form-label">Đáp án B</label>
-                      <input
+                      <div class="col-1"><input type="checkbox" id="answerB" value="B"></div>
+                      <div class="col-11">
+                        <input
                         class="form-control form-control-lg"
                         type="text"
                         placeholder="Đáp án B"
                         v-model="Question.answerB"
                       />
+                      </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-6 row">
                       <label class="form-label">Đáp án C</label>
-                      <input
+                      <div class="col-1"><input type="checkbox" id="answerC" value="C"></div>
+                      <div class="col-11">
+                        <input
                         class="form-control form-control-lg"
                         type="text"
                         placeholder="Đáp án C"
                         v-model="Question.answerC"
                       />
+                      </div>
                     </div>
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-6 row">
                       <label class="form-label">Đáp án D</label>
-                      <input
+                      <div class="col-1"><input type="checkbox" id="answerD" value="D"></div>
+                      <div class="col-11">
+                        <input
                         class="form-control form-control-lg"
                         type="text"
                         placeholder="Đáp án D"
                         v-model="Question.answerD"
                       />
+                      </div>
                     </div>
                   </div>
-                  <div class="mb-3 col-12">
-                    <label class="form-label">Đáp án Đúng</label>
-                    <input
-                      class="form-control form-control-lg"
-                      type="text"
-                      placeholder="Đáp án Đúng"
-                      v-model="Question.corectAnswer"
-                    />
-                  </div>
-
                   <div class="text-center mt-3">
                     <button class="btn btn-primary" type="submit">Thêm</button>
                   </div>

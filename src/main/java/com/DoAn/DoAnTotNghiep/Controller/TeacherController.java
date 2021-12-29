@@ -4,6 +4,8 @@ import com.DoAn.DoAnTotNghiep.DTO.Request.CreateExam;
 import com.DoAn.DoAnTotNghiep.DTO.Response.QuestionDTO;
 import com.DoAn.DoAnTotNghiep.Entity.Exam;
 import com.DoAn.DoAnTotNghiep.Entity.Question;
+import com.DoAn.DoAnTotNghiep.Entity.QuestionIT;
+import com.DoAn.DoAnTotNghiep.Service.QuestionItService;
 import com.DoAn.DoAnTotNghiep.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,15 +22,30 @@ public class TeacherController {
     @Autowired
     QuestionService questionService;
 
+    @Autowired
+    QuestionItService questionItService;
+
     @GetMapping("/question")
     public ResponseEntity<?> getListQuestion(){
         List<Question> list = questionService.getListQuestion();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    @GetMapping("/question-it")
+    public ResponseEntity<?> getListQuestionIT(){
+        List<QuestionIT> list = this.questionItService.getAllQuestion();
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
     @PostMapping("/question/create")
     public ResponseEntity<?> createQuestion(@RequestBody Question question){
         boolean status = questionService.createQuestion(question);
+        return new ResponseEntity<>(status,HttpStatus.OK);
+    }
+
+    @PostMapping("/question-it/create")
+    public ResponseEntity<?> createQuestionIt(@RequestBody QuestionIT question){
+        boolean status = questionItService.createQuestion(question);
         return new ResponseEntity<>(status,HttpStatus.OK);
     }
 
@@ -38,13 +55,30 @@ public class TeacherController {
         return new ResponseEntity<>(status,HttpStatus.OK);
     }
 
+    @DeleteMapping("/question-it/{id}")
+    public ResponseEntity<?> deleteQuestionIt(@PathVariable ("id") Long id){
+        boolean status = questionItService.deleteQuestion(id);
+        return new ResponseEntity<>(status,HttpStatus.OK);
+    }
+
     @GetMapping("/question/{id}")
     public ResponseEntity<?> getQuestionById(@PathVariable ("id") Long id){
         return new ResponseEntity<>(questionService.getQuestionById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/question-it/{id}")
+    public ResponseEntity<?> getQuestionItById(@PathVariable ("id") Long id){
+        return new ResponseEntity<>(questionItService.getQuestionById(id), HttpStatus.OK);
+    }
+
     @PostMapping("/create/exam")
     public ResponseEntity<?> createExam(@RequestBody CreateExam createExam){
+        boolean status = true;
+        return new ResponseEntity<>(status,HttpStatus.OK);
+    }
+
+    @PostMapping("/create/exam-it")
+    public ResponseEntity<?> createExamIt(@RequestBody CreateExam createExam){
         boolean status = true;
         return new ResponseEntity<>(status,HttpStatus.OK);
     }

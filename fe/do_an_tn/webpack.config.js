@@ -1,5 +1,12 @@
 var path = require('path')
 var webpack = require('webpack')
+const express = require('express');
+const app = express();
+
+const cors = require('cors');
+
+app.use(cors());
+
 
 module.exports = {
   entry: './src/main.js',
@@ -78,7 +85,9 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+    port: 9000,
+    
   },
   performance: {
     hints: false

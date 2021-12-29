@@ -27,7 +27,6 @@
         </a>
         <div class="navbar-collapse collapse">
           <ul class="navbar-nav navbar-align">
-            <button @click="logout">Đăng xuất</button>
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle d-none d-sm-inline-block"

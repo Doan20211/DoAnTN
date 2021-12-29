@@ -14,6 +14,7 @@
         "bootstrap": "^5.1.3",
         "feather-icons": "^4.28.0",
         "vue": "^2.5.11",
+        "vue-bulma-brace": "^0.1.0",
         "vue-router": "^3.5.3"
     },
     "browserslist": [
@@ -26,6 +27,7 @@
         "babel-loader": "^7.1.2",
         "babel-preset-env": "^1.6.0",
         "babel-preset-stage-3": "^6.24.1",
+        "cors": "^2.8.5",
         "cross-env": "^5.0.5",
         "css-loader": "^0.28.7",
         "file-loader": "^1.1.4",

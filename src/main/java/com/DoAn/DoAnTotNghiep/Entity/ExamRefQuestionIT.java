@@ -10,8 +10,8 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "exam_ref_question")
-public class ExamRefQuestion {
+@Table(name = "exam_ref_question_it")
+public class ExamRefQuestionIT {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,6 @@ public class ExamRefQuestion {
     private Exam exam;
 
     @ManyToOne
-    private Question question;
+    private QuestionIT questionIT;
 
 }

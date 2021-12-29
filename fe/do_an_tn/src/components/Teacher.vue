@@ -19,6 +19,10 @@
             </a>
           </li>
 
+          <li class="sidebar-header">
+						Quản lý câu hỏi
+					</li>
+
           <li
             class="sidebar-item"
             @click="active = '2'"
@@ -26,7 +30,7 @@
           >
             <a class="sidebar-link" href="/home/teacher/question">
               <i class="align-middle" data-feather="help-circle"></i>
-              <span class="align-middle">Quản lý câu hỏi</span>
+              <span class="align-middle">Câu hỏi trắc nghiệm</span>
             </a>
           </li>
 
@@ -35,11 +39,34 @@
             @click="active = '3'"
             :class="{ active: active === '3' }"
           >
+            <a class="sidebar-link" href="/home/teacher/questionIT/create">
+              <i class="align-middle" data-feather="help-circle"></i>
+              <span class="align-middle">Câu hỏi Code</span>
+            </a>
+          </li>
+
+          <li
+            class="sidebar-item"
+            @click="active = '4'"
+            :class="{ active: active === '4' }"
+          >
             <a class="sidebar-link" href="/home/teacher/exam">
               <i class="align-middle" data-feather="file-text"></i>
               <span class="align-middle">Quản lý đề thi</span>
             </a>
           </li>
+          
+          <li
+            class="sidebar-item"
+            @click="active = '5'"
+            :class="{ active: active === '5' }"
+          >
+            <a class="sidebar-link" href="/home/teacher/examIT">
+              <i class="align-middle" data-feather="file-text"></i>
+              <span class="align-middle">Thi code</span>
+            </a>
+          </li>
+          
         </ul>
       </div>
     </nav>
@@ -76,7 +103,7 @@
       </nav>
       <div class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong>Quản ngân hàng câu hỏi</strong></h1>
+          <h1 class="h3 mb-3"><strong></strong></h1>
           <div class="row">
             <router-view />
           </div>
@@ -119,5 +146,9 @@ export default {
 <style>
 hr.solid {
   border-top: 3px solid #bbb;
+}
+.active{
+  background-color: aqua;
+  color: white;
 }
 </style>

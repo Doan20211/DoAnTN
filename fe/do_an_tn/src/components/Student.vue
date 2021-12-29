@@ -24,9 +24,20 @@
             @click="active = '2'"
             :class="{ active: active === '2' }"
           >
-            <a class="sidebar-link" href="/home/teacher/question">
+            <a class="sidebar-link" href="/home/teacher/exam">
               <i class="align-middle" data-feather="help-circle"></i>
               <span class="align-middle">Thi</span>
+            </a>
+          </li>
+
+          <li
+            class="sidebar-item"
+            @click="active = '4'"
+            :class="{ active: active === '4' }"
+          >
+            <a class="sidebar-link" href="/home/teacher/examIT">
+              <i class="align-middle" data-feather="file-text"></i>
+              <span class="align-middle">Thi code</span>
             </a>
           </li>
 
