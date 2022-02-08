@@ -1,10 +1,13 @@
 package com.DoAn.DoAnTotNghiep.Controller;
 
 import com.DoAn.DoAnTotNghiep.DTO.Request.CreateExam;
+import com.DoAn.DoAnTotNghiep.DTO.Response.Complie;
 import com.DoAn.DoAnTotNghiep.DTO.Response.QuestionDTO;
 import com.DoAn.DoAnTotNghiep.Entity.Exam;
 import com.DoAn.DoAnTotNghiep.Entity.Question;
 import com.DoAn.DoAnTotNghiep.Entity.QuestionIT;
+import com.DoAn.DoAnTotNghiep.Service.ComplieService;
+import com.DoAn.DoAnTotNghiep.Service.ExamService;
 import com.DoAn.DoAnTotNghiep.Service.QuestionItService;
 import com.DoAn.DoAnTotNghiep.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,12 @@ public class TeacherController {
 
     @Autowired
     QuestionItService questionItService;
+
+    @Autowired
+    ExamService examService;
+
+    @Autowired
+    ComplieService complieService;
 
     @GetMapping("/question")
     public ResponseEntity<?> getListQuestion(){
@@ -73,7 +82,7 @@ public class TeacherController {
 
     @PostMapping("/create/exam")
     public ResponseEntity<?> createExam(@RequestBody CreateExam createExam){
-        boolean status = true;
+        boolean status = this.examService.createExam(createExam);
         return new ResponseEntity<>(status,HttpStatus.OK);
     }
 
@@ -81,6 +90,12 @@ public class TeacherController {
     public ResponseEntity<?> createExamIt(@RequestBody CreateExam createExam){
         boolean status = true;
         return new ResponseEntity<>(status,HttpStatus.OK);
+    }
+
+    @PostMapping("/test")
+    public ResponseEntity<?> Test(){
+        Complie result = this.complieService.complie();
+        return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
 }

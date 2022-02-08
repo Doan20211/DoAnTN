@@ -21,54 +21,61 @@
                   </div>
                   <div class="row">
                     <div class="mb-3 col-6 row">
-                      <label class="form-label ">Đáp án A</label>
-                      <div class="col-1"><input type="checkbox" id="answerA" value="A"></div>
+                      <label class="form-label">Đáp án A</label>
+                      <div class="col-1">
+                        <input type="checkbox" id="answerA" v-model="ansA" value="A" />
+                      </div>
                       <div class="col-11">
                         <input
-                        class="form-control form-control-lg"
-                        type="text"
-                        placeholder="Đáp án A"
-                        v-model="Question.answerA"
-                      />
+                          class="form-control form-control-lg"
+                          type="text"
+                          placeholder="Đáp án A"
+                          v-model="Question.answerA"
+                        />
                       </div>
-                      
                     </div>
                     <div class="mb-3 col-6 row">
                       <label class="form-label">Đáp án B</label>
-                      <div class="col-1"><input type="checkbox" id="answerB" value="B"></div>
+                      <div class="col-1">
+                        <input type="checkbox" id="answerB" v-model="ansB" value="B" />
+                      </div>
                       <div class="col-11">
                         <input
-                        class="form-control form-control-lg"
-                        type="text"
-                        placeholder="Đáp án B"
-                        v-model="Question.answerB"
-                      />
+                          class="form-control form-control-lg"
+                          type="text"
+                          placeholder="Đáp án B"
+                          v-model="Question.answerB"
+                        />
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="mb-3 col-6 row">
                       <label class="form-label">Đáp án C</label>
-                      <div class="col-1"><input type="checkbox" id="answerC" value="C"></div>
+                      <div class="col-1">
+                        <input type="checkbox" id="answerC" v-model="ansC" value="C" />
+                      </div>
                       <div class="col-11">
                         <input
-                        class="form-control form-control-lg"
-                        type="text"
-                        placeholder="Đáp án C"
-                        v-model="Question.answerC"
-                      />
+                          class="form-control form-control-lg"
+                          type="text"
+                          placeholder="Đáp án C"
+                          v-model="Question.answerC"
+                        />
                       </div>
                     </div>
                     <div class="mb-3 col-6 row">
                       <label class="form-label">Đáp án D</label>
-                      <div class="col-1"><input type="checkbox" id="answerD" value="D"></div>
+                      <div class="col-1">
+                        <input type="checkbox" id="answerD" v-model="ansD" value="D" />
+                      </div>
                       <div class="col-11">
                         <input
-                        class="form-control form-control-lg"
-                        type="text"
-                        placeholder="Đáp án D"
-                        v-model="Question.answerD"
-                      />
+                          class="form-control form-control-lg"
+                          type="text"
+                          placeholder="Đáp án D"
+                          v-model="Question.answerD"
+                        />
                       </div>
                     </div>
                   </div>
@@ -106,10 +113,18 @@ export default {
         answerD: "",
         corectAnswer: "",
       },
+      ansA:"",
+      ansB:"",
+      ansC:"",
+      ansD:"",
     };
   },
   methods: {
     createQuestion() {
+      this.createCorectAnswer();
+      if(this.msgError.corectAnswer){
+        return;
+      }
       HTTP.post("/teacher/question/create", this.Question)
         .then((res) => {
           alert("Thêm câu hỏi thành công!");
@@ -120,6 +135,27 @@ export default {
           alert("Thêm câu hỏi không thành công!");
         });
     },
+    createCorectAnswer(){
+      console.log('create')
+      if(this.ansA){
+        this.Question.corectAnswer += 'A';
+      }
+      if(this.ansB){
+        this.Question.corectAnswer += 'B';
+      }
+      if(this.ansC){
+        this.Question.corectAnswer += 'C';
+      }
+      if(this.ansD){
+        this.Question.corectAnswer += 'D';
+      }
+      if(!this.ansA && !this.ansB && !this.ansC && !this.ansD){
+        this.msgError.corectAnswer = true;
+        alert("Chưa có đáp án đúng cho đề bài!");
+      } else {
+        this.msgError.corectAnswer = false;
+      }
+    }
   },
 };
 </script>

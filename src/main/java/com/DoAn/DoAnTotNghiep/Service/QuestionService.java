@@ -10,7 +10,7 @@ public interface QuestionService {
     QuestionDTO getQuestionById(Long id);
     List<QuestionDTO> getAllQuestion();
     List<Question> getListQuestion();
-    List<QuestionDTO> getRandomQuestionByQuantity(Integer number);
+    List<Question> getRandomQuestionByQuantity(Integer number);
     boolean createQuestion(Question question);
     boolean deleteQuestion(Long id);
 

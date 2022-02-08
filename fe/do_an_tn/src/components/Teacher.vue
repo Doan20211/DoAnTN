@@ -36,6 +36,17 @@
 
           <li
             class="sidebar-item"
+            @click="active = '2'"
+            :class="{ active: active === '2' }"
+          >
+            <a class="sidebar-link" href="/home/teacher/question">
+              <i class="align-middle" data-feather="help-circle"></i>
+              <span class="align-middle">Đề thi trắc nghiệm</span>
+            </a>
+          </li>
+
+          <li
+            class="sidebar-item"
             @click="active = '3'"
             :class="{ active: active === '3' }"
           >

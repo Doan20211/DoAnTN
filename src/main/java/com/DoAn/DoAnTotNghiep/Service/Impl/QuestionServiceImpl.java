@@ -39,8 +39,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionDTO> getRandomQuestionByQuantity(Integer number) {
-        List<QuestionDTO> result = new ArrayList<>();
+    public List<Question> getRandomQuestionByQuantity(Integer number) {
+        List<Question> result = new ArrayList<>();
         List<Question> questionList = this.questionRepository.findAll();
         Map<Long, Question> questionMap = questionList.stream()
                 .collect(Collectors.toMap(Question::getId, question -> question));
@@ -51,7 +51,7 @@ public class QuestionServiceImpl implements QuestionService {
             Random rand = new Random();
             for(int i=0; i<number; i++){
                 Long randomKey = listKey.get(rand.nextInt(listKey.size()));
-                result.add(new QuestionDTO(questionMap.get(randomKey)));
+                result.add(questionMap.get(randomKey));
                 listKey.remove(randomKey);
             }
         }

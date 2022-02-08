@@ -164,7 +164,7 @@ export default {
   methods: {
     getAccount() {
       const id = localStorage.getItem("idAccount");
-      HTTP.get("admin/account/" + id)
+      HTTP.get("/admin/account/" + id)
         .then((res) => {
           this.Account = res.data;
           this.Account.role = "ROLE_" + this.Account.role;

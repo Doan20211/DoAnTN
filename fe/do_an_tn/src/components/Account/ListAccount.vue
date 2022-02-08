@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     getListAccount() {
-      HTTP.get("admin/account")
+      HTTP.get("/admin/account")
         .then((res) => {
           this.ListAccount = res.data;
           console.log(res);
@@ -85,7 +85,7 @@ export default {
         });
     },
     reload() {
-      HTTP.get("admin/account")
+      HTTP.get("/admin/account")
         .then((res) => {
           this.ListAccount = res.data;
           console.log(res);

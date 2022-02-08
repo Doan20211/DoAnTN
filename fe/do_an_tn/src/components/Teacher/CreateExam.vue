@@ -1,46 +1,78 @@
 <template>
   <div class="col-12 col-lg-12 col-xxl-12 d-flex">
-    <div class="card flex-fill">
-      <div class="card-header">
-        <div class="row">
-          <h4 class="col-6">Danh sách câu hỏi trắc nghiệm</h4>
-          <div class="col-6 text-end">
-            <button class="btn btn-outline-primary" @click="toInsert">
-              Tạo đề thi
-            </button>
+    <div class="container d-flex flex-column">
+      <div class="row vh-90">
+        <div class="col-sm-12 col-md-10 col-lg-8 mx-auto d-table h-100">
+          <div class="d-table-cell align-middle">
+            <div class="card">
+              <h2 class="card-title mt-3 ms-3 strong">Tạo đề thi trắc nghiệm</h2>
+              <hr class="solid" />
+              <div class="card-body">
+                <div class="m-sm-8">
+                  <form @submit.prevent="createExam">
+                    <div class="mb-3 col-12">
+                      <label class="form-label">Tên đề thi</label>
+                      <textarea
+                        class="form-control form-control-lg"
+                        type="text"
+                        style=""
+                        placeholder="Tên đề thi"
+                        v-model="Exam.name"
+                      />
+                    </div>
+                    <div class="row">
+                      <div class="mb-3 col-6">
+                        <label class="form-label">Thời gian thi</label>
+                        <input
+                          class="form-control form-control-lg"
+                          type="number"
+                          style=""
+                          placeholder="Phút"
+                          v-model="Exam.examTime"
+                        />
+                      </div>
+                      <div class="mb-3 col-6">
+                        <label class="form-label">Ngày thi</label>
+                        <input
+                          class="form-control form-control-lg"
+                          type="date"
+                          style=""
+                          placeholder="Tên đề thi"
+                          v-model="Exam.date"
+                        />
+                      </div>
+                      <div class="mb-3 col-6">
+                        <label class="form-label">Giờ thi</label>
+                        <input
+                          class="form-control form-control-lg"
+                          type="time"
+                          style=""
+                          placeholder="Tên đề thi"
+                          v-model="Exam.time"
+                        />
+                      </div>
+                      <div class="mb-3 col-6">
+                        <label class="form-label">Số câu hỏi</label>
+                        <input
+                          class="form-control form-control-lg"
+                          type="number"
+                          style=""
+                          placeholder="Số lượng câu hỏi trong đề thi"
+                          v-model="Exam.numberOfQuestion"
+                        />
+                      </div>
+                    </div>
+                    <div class="text-center mt-3">
+                      <button class="btn btn-primary" type="submit">
+                        Thêm
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="scroll">
-        <table class="table table-hover my-0">
-          <thead>
-            <tr>
-              <th class="col-1">Check</th>
-              <th class="col-1">ID</th>
-              <th class="col-9">Câu hỏi</th>
-              <th class="col-1">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="ques in ListQuestion" :key="ques.id">
-              <td>{{ ques.id }}</td>
-              <td><Question v-bind="ques" /></td>
-              <td>
-                <button class="btn btn-outline-info" @click="toEdit(ques.id)">
-                  <i class="align-middle" data-feather="edit"></i>
-                  Sửa
-                </button>
-                <button
-                  class="btn btn-outline-danger"
-                  @click="deleteAccount(ques.id)"
-                >
-                  <i class="align-middle" data-feather="trash"></i>
-                  Xóa
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </div>
@@ -49,65 +81,35 @@
 <script>
 import { HTTP } from "../../http-common";
 import feather from "feather-icons";
-import Question from "./Question.vue";
 export default {
   data() {
     return {
-      ListQuestion: [],
+      Exam: {
+        name: "",
+        examTime:"",
+        time: "",
+        date: "",
+        numberOfQuestion: "",
+      },
     };
   },
-  components: {
-    Question,
-  },
+  components: {},
   methods: {
-    getListQuestion() {
-      HTTP.get("teacher/question")
-        .then((res) => {
-          this.ListQuestion = res.data;
-          console.log(res);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    reload() {
-      HTTP.get("teacher/question")
-        .then((res) => {
-          this.ListQuestion = res.data;
-          console.log(res);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    toInsert() {
-      this.$router.push("/home/teacher/question/create");
-    },
-    toEdit(id) {
-      localStorage.setItem("idQuestion", id);
-      console.log(id);
-      this.$router.push("/home/teacher/question/edit");
-    },
-    deleteAccount(id) {
-      HTTP.delete("/teacher/question/" + id)
-        .then((res) => {
-          this.ListAccount = res.data;
-          console.log(res);
-          alert("Xóa câu hỏi thành công!");
-        })
-        .catch((error) => {
-          console.log(error);
-          alert("Xóa câu hỏi không thành công!");
-        });
-      this.$router.go();
-    },
+    createExam(){
+      HTTP.post('/teacher/create/exam', this.Exam)
+      .then((res) => {
+        alert("Tạo đề thi thành công!");
+        
+      })
+      .catch((err) => {
+        alert("Tạo đề thi lỗi!");
+      })
+    }
   },
   mouted() {
     feather.replace();
-    this.getListQuestion();
   },
   created() {
-    this.getListQuestion();
   },
 };
 </script>

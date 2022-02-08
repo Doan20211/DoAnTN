@@ -8,6 +8,9 @@
             <button class="btn btn-outline-primary" @click="toInsert">
               Thêm câu hỏi
             </button>
+            <button class="btn btn-outline-primary" @click="createExam">
+              Tạo đề thi
+            </button>
           </div>
         </div>
       </div>
@@ -103,6 +106,9 @@ export default {
         });
       this.$router.go();
     },
+    createExam(){
+      this.$router.push("/home/teacher/exam/create")
+    }
   },
   mouted() {
     feather.replace();

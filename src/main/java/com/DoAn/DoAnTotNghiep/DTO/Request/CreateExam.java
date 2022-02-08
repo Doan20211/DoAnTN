@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 @Data
@@ -12,7 +14,9 @@ import java.util.List;
 public class CreateExam {
 
     private String name;
+    private Integer examTime;
+    private Date date;
     private String time;
-    private List<Long> questionIds;
+    private Integer numberOfQuestion;
 
 }
