@@ -5,8 +5,9 @@ const app = express();
 
 const cors = require('cors');
 
-app.use(cors());
-
+app.use(cors({
+  origin: '*'
+}));
 
 module.exports = {
   entry: './src/main.js',
@@ -85,7 +86,8 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+    proxy: {'proxy': 'https://codexweb.netlify.app'}
   },
   performance: {
     hints: false

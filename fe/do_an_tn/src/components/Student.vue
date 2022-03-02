@@ -24,7 +24,7 @@
             @click="active = '2'"
             :class="{ active: active === '2' }"
           >
-            <a class="sidebar-link" href="/home/teacher/exam">
+            <a class="sidebar-link" href="/home/student/exam">
               <i class="align-middle" data-feather="help-circle"></i>
               <span class="align-middle">Thi</span>
             </a>
@@ -77,7 +77,7 @@
       </nav>
       <div class="content">
         <div class="container-fluid p-0">
-          <h1 class="h3 mb-3"><strong>Quản ngân hàng câu hỏi</strong></h1>
+          <!-- <h1 class="h3 mb-3"><strong>Sinh viên</strong></h1> -->
           <div class="row">
             <router-view />
           </div>

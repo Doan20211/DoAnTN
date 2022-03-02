@@ -14,6 +14,7 @@ import ListExam from '../components/Teacher/ListExam.vue'
 import CreateExam from '../components/Teacher/CreateExam.vue'
 import ComplieCode from '../components/ExamIT/ComplieCode.vue'
 import CreateQuestionIT from '../components/Question/CreateQuestionIT.vue'
+import StudentExam from '../components/Student/StudentExam.vue'
 
 Vue.use(Router)
 
@@ -87,6 +88,11 @@ export default new Router({
                     path: 'information',
                     name: 'Information',
                     component: Information
+                },
+                {
+                    path: 'student/exam',
+                    name: 'StudentExam',
+                    component: StudentExam,
                 }
             ]
         },

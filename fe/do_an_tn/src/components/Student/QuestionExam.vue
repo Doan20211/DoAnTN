@@ -1,58 +1,41 @@
 <template>
-  <div>
-    <div class="mb-3 col-10">
-      <label class="form-label">Câu hỏi</label>
-      <textarea
-        class="form-control form-control-lg"
-        type="text"
-        style="height: 100px"
-        placeholder="Câu hỏi"
-        v-model="Question.thread"
-      />
+  <div class="question-exam">
+    <div class="mb-5 col-10">
+      <strong>Câu hỏi: Ngôn ngữ lập trình là gì?</strong>
     </div>
     <div class="row">
       <div class="mb-3 col-6">
-        <label class="form-label">Đáp án A</label>
-        <input
-          class="form-control form-control-lg"
-          type="text"
-          placeholder="Đáp án A"
-          v-model="Question.answerA"
-        />
+        <div class="input-group mb-3">
+          <div class="input-group-text">
+            <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+          </div>
+          <input type="text" class="form-control" value="Đáp án A" disabled>
+        </div>
       </div>
       <div class="mb-3 col-6">
-        <label class="form-label">Đáp án B</label>
-        <input
-          class="form-control form-control-lg"
-          type="text"
-          placeholder="Đáp án B"
-          v-model="Question.answerB"
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="mb-3 col-6">
-        <label class="form-label">Đáp án C</label>
-        <input
-          class="form-control form-control-lg"
-          type="text"
-          placeholder="Đáp án C"
-          v-model="Question.answerC"
-        />
+        <div class="input-group mb-3">
+          <div class="input-group-text">
+            <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+          </div>
+          <input type="text" class="form-control" value="Đáp án B" disabled>
+        </div>
       </div>
       <div class="mb-3 col-6">
-        <label class="form-label">Đáp án D</label>
-        <input
-          class="form-control form-control-lg"
-          type="text"
-          placeholder="Đáp án D"
-          v-model="Question.answerD"
-        />
+        <div class="input-group mb-3">
+          <div class="input-group-text">
+            <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+          </div>
+          <input type="text" class="form-control" value="Đáp án C" disabled>
+        </div>
       </div>
-    </div>
-
-    <div class="text-center mt-3">
-      <button class="btn btn-primary" type="submit">Thêm</button>
+      <div class="mb-3 col-6">
+        <div class="input-group mb-3">
+          <div class="input-group-text">
+            <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+          </div>
+          <input type="text" class="form-control" value="Đáp án D" disabled>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -74,6 +57,10 @@ export default {
 </script>
 
 <style scoped>
-span {
+.question-exam {
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 12px;
 }
 </style>
