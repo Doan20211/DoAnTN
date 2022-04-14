@@ -8,7 +8,7 @@
         <ul class="sidebar-nav">
           <li class="sidebar-header">Chức năng</li>
 
-          <li
+          <!-- <li
             class="sidebar-item"
             @click="active = '1'"
             :class="{ active: active === '1' }"
@@ -17,7 +17,7 @@
               <i class="align-middle" data-feather="user"></i>
               <span class="align-middle">Quản lý lớp sinh viên</span>
             </a>
-          </li>
+          </li> -->
 
           <li class="sidebar-header">
 						Quản lý câu hỏi
@@ -25,8 +25,8 @@
 
           <li
             class="sidebar-item"
-            @click="active = '2'"
-            :class="{ active: active === '2' }"
+            @click="active = '1'"
+            :class="{ active: active === '1' }"
           >
             <a class="sidebar-link" href="/home/teacher/question">
               <i class="align-middle" data-feather="help-circle"></i>
@@ -41,7 +41,7 @@
           >
             <a class="sidebar-link" href="/home/teacher/question">
               <i class="align-middle" data-feather="help-circle"></i>
-              <span class="align-middle">Đề thi trắc nghiệm</span>
+              <span class="align-middle">Tạo đề thi trắc nghiệm</span>
             </a>
           </li>
 

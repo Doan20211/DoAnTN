@@ -2,83 +2,98 @@
   <div>
     <div class="header-exam">
       <div>
-        <strong style="font-size: 24px">Đề thi trắc nghiệm cuối kỳ</strong>
+        <strong style="font-size: 24px">{{exam.name}}</strong>
       </div>
       <div class="row mt-4 justify-content-center" style="height: 100px">
         <div class="col-5">
           <p>Môn thi: Ngôn ngữ lập trình </p>
-          <p>Thời gian thi: 60 phút</p>
+          <p>Thời gian thi: {{exam.time}} phút</p>
         </div>
         <div class="col-5">
-          <strong style="font-size: 20px">Thời gian còn lại: 00:30:26</strong>
+          <strong style="font-size: 20px">Thời gian còn lại: {{min}}:{{sec}}</strong>
         </div>
       </div>
       <div class="text-end mb-2">
-        <Button class="btn btn-primary">Nộp bài</Button>
-        <Button class="btn btn-danger">Hủy bài thi</Button>
+        <Button class="btn btn-primary" @click="submitExam">Nộp bài</Button>
+        <Button class="btn btn-danger " style="margin-left: 5px">Hủy bài thi</Button>
       </div>
     </div>
     <div class="body-exam">
-      <question-exam />
-      <question-exam />
-      <question-exam />
-    </div>
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
-      Launch demo modal
-    </button>
-
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">...</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
+      <ul>
+        <li v-for="(ques, index) in listQuestion" :key="ques.id">
+          <!-- <QuestionExam v-bind="question"> -->
+            <span>Câu hỏi: {{index + 1}}</span>
+            <QuestionExam :question="ques" :create="createAns" :index="index"/>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
+import { HTTP } from '../../http-common';
 import QuestionExam from './QuestionExam.vue'
   export default {
     data() {
       return {
-        abc: ''
+        exam: {
+          name: 'Thi cuối kỳ',
+        },
+        listQuestion:[],
+        min: '',
+        sec: 59,
+        answer: []
       }
     },
     components: {
       QuestionExam,
+    },
+    methods: {
+      getExam(){
+        HTTP.get('/student/exam')
+        .then((res) => {
+          this.exam = res.data;
+          this.min = res.data.time - 1;
+          this.listQuestion = res.data.questions;
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+      },
+      createAns(index, ans) {
+        this.answer[index] = ans;
+      },
+      submitExam() {
+        HTTP
+          .post("/student/exam/" + this.exam.id, this.answer)
+          .then((res) => {
+            console.log(res.data);
+            alert("Kết quả: Đúng " + res.data.point + "/" + res.data.totalQuestion + "câu.");
+            this.$router.push("/home/teacher/class");
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+        
+      }
+    },
+    mounted() {
+      this.getExam();
+    },
+    created() {
+      setInterval(() => {
+        this.sec--;
+        if(this.sec < 0) {
+          if(this.min > 0){
+            this.sec = 59;
+          } else {
+
+          }
+        }
+      }, 1000);
+      setInterval(() => {
+        this.min--;
+      }, 60000)
     }
   };
 </script>
@@ -93,7 +108,6 @@ import QuestionExam from './QuestionExam.vue'
 }
 
 .body-exam {
-  height: 500px;
   background-color: rgb(255, 255, 255);
   border-radius: 12px;
   padding: 16px;

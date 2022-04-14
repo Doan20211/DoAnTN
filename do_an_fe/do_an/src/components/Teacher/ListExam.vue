@@ -16,14 +16,14 @@
           <thead>
             <tr>
               <th class="col-1">ID</th>
-              <th class="col-9">Câu hỏi</th>
+              <th class="col-9">Đề thi</th>
               <th class="col-1">Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="ques in ListQuestion" :key="ques.id">
-              <td >{{ ques.id }}</td>
-              <td> <Question v-bind="ques" /></td>
+            <tr v-for="exam in ListExam" :key="exam.id">
+              <td >{{ exam.id }}</td>
+              <td> {{exam.name}}</td>
               <td>
                 <button
                   class="btn btn-outline-info"
@@ -55,7 +55,7 @@ import Question from '../Question/Question.vue'
 export default {
   data() {
     return {
-      ListQuestion: [],
+      ListExam: [],
     };
   },
   components:{
@@ -63,9 +63,9 @@ export default {
   },
   methods: {
     getListQuestion() {
-      HTTP.get("teacher/question")
+      HTTP.get("teacher/exam")
         .then((res) => {
-          this.ListQuestion = res.data;
+          this.ListExam = res.data;
           console.log(res);
         })
         .catch((error) => {
@@ -73,7 +73,7 @@ export default {
         });
     },
     reload() {
-      HTTP.get("teacher/question")
+      HTTP.get("teacher/exam")
         .then((res) => {
           this.ListQuestion = res.data;
           console.log(res);
@@ -82,26 +82,12 @@ export default {
           console.log(error);
         });
     },
-    toInsert() {
-      this.$router.push("/home/teacher/question/create");
-    },
     toEdit(id) {
       localStorage.setItem("idQuestion", id);
       console.log(id);
       this.$router.push("/home/teacher/question/edit");
     },
-    deleteAccount(id) {
-      HTTP.delete("/teacher/question/" + id)
-        .then((res) => {
-          this.ListAccount = res.data;
-          console.log(res);
-          alert('Xóa câu hỏi thành công!');
-        })
-        .catch((error) => {
-          console.log(error);
-          alert('Xóa câu hỏi không thành công!');
-        });
-      this.$router.go();
+    deleteExam(id) {
     },
   },
   mouted() {

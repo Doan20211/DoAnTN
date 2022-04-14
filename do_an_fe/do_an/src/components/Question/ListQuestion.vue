@@ -37,7 +37,7 @@
                 </button>
                 <button
                   class="btn btn-outline-danger"
-                  @click="deleteAccount(ques.id)"
+                  @click="deleteQuestion(ques.id)"
                 >
                   <i class="align-middle" data-feather="trash"></i>
                   Xóa
@@ -93,10 +93,10 @@ export default {
       console.log(id);
       this.$router.push("/home/teacher/question/edit");
     },
-    deleteAccount(id) {
+    deleteQuestion(id) {
       HTTP.delete("/teacher/question/" + id)
         .then((res) => {
-          this.ListAccount = res.data;
+          this.ListQuestion = res.data;
           console.log(res);
           alert('Xóa câu hỏi thành công!');
         })

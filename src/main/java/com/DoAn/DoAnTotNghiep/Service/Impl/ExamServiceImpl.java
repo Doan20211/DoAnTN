@@ -1,6 +1,8 @@
 package com.DoAn.DoAnTotNghiep.Service.Impl;
 
 import com.DoAn.DoAnTotNghiep.DTO.Request.CreateExam;
+import com.DoAn.DoAnTotNghiep.DTO.Response.ExamDTO;
+import com.DoAn.DoAnTotNghiep.DTO.Response.QuestionDTO;
 import com.DoAn.DoAnTotNghiep.Entity.Exam;
 import com.DoAn.DoAnTotNghiep.Entity.ExamRefQuestion;
 import com.DoAn.DoAnTotNghiep.Entity.Question;
@@ -13,7 +15,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__({@Autowired}))
@@ -42,13 +46,38 @@ public class ExamServiceImpl implements ExamService {
     }
 
     @Override
+    public ExamDTO getExamStudent() {
+        List<Exam> exams = this.examRepository.findAll();
+        Random ran = new Random();
+        int a = ran.nextInt(exams.size());
+        Exam exam = exams.get(a);
+        ExamDTO examDTO = new ExamDTO();
+        examDTO.setId(exam.getId());
+        examDTO.setName(exam.getName());
+        examDTO.setTime(exam.getExamTime());
+        List<ExamRefQuestion> examRefQuestions = this.examRefQuestionRepository.findByExam(exam);
+        List<QuestionDTO> questions = new ArrayList<>();
+        for(ExamRefQuestion examRefQuestion : examRefQuestions) {
+            Question question = examRefQuestion.getQuestion();
+            questions.add(new QuestionDTO(question));
+        }
+        examDTO.setQuestions(questions);
+        return examDTO;
+    }
+
+    @Override
+    public Exam getExamById(Long id) {
+        return this.examRepository.getById(id);
+    }
+
+    @Override
     public boolean createExamIt(CreateExam createExam) {
         return false;
     }
 
     @Override
     public List<Exam> getListExam() {
-        return null;
+        return this.examRepository.findAll();
     }
 
     @Override

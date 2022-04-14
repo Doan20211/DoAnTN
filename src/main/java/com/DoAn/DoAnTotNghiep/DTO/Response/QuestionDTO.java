@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class QuestionDTO {
 
+    private Long id;
     private String thread;
     private String answerA;
     private String answerB;
@@ -17,6 +18,7 @@ public class QuestionDTO {
     private String answerD;
 
     public QuestionDTO(Question question){
+        this.id = question.getId();
         this.thread = question.getThread();
         this.answerA = question.getAnswerA();
         this.answerB = question.getAnswerB();

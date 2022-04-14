@@ -2,7 +2,6 @@ package com.DoAn.DoAnTotNghiep.Controller;
 
 import com.DoAn.DoAnTotNghiep.DTO.Request.CreateExam;
 import com.DoAn.DoAnTotNghiep.DTO.Response.Complie;
-import com.DoAn.DoAnTotNghiep.DTO.Response.QuestionDTO;
 import com.DoAn.DoAnTotNghiep.Entity.Exam;
 import com.DoAn.DoAnTotNghiep.Entity.Question;
 import com.DoAn.DoAnTotNghiep.Entity.QuestionIT;
@@ -96,6 +95,12 @@ public class TeacherController {
     public ResponseEntity<?> Test(){
         Complie result = this.complieService.complie();
         return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+
+    @GetMapping("/exam")
+    public ResponseEntity<?> listExam(){
+        List<Exam> exams = this.examService.getListExam();
+        return new ResponseEntity<>(exams, HttpStatus.OK);
     }
 
 }

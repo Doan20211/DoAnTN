@@ -108,11 +108,13 @@ export default {
           this.ListAccount = res.data;
           console.log(res);
           alert('Xóa tài khoản thành công!');
+          this.$router.go();
         })
         .catch((error) => {
           console.log(error);
+          alert('Xóa tài khoản không thành công!');
+          this.$router.go();
         });
-      this.$router.go();
     },
   },
   mouted() {
